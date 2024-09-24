@@ -1,16 +1,19 @@
 services:
   app:
     container_name: hopi-hari-experience-backend
+    restart: always
     build: .
     ports:
       - '3000:3000'
     volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - ./:/app/
+      - /app/node_modules
+    working_dir: /app
     env_file:
       - .env
     depends_on:
       - mongo
+    command: npm run dev
 
   mongo:
     image: mongo:latest
