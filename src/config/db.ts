@@ -3,13 +3,13 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const mongoUri = process.env.MONGO_URI || '';
+const mongoUri: string = process.env.MONGO_URI || '';
 
-export const connectDB = async () => {
+export const connectDB = async (): Promise<void> => {
   try {
     await mongoose.connect(mongoUri);
     console.log('Connection established successfully');
-  } catch (err) {
+  } catch (err: unknown) {
     console.log('Connection refused', err);
     process.exit(1);
   }

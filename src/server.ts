@@ -1,26 +1,19 @@
-import express from 'express';
-import { Router } from 'express';
+import express, { Application } from 'express';
 import dotenv from 'dotenv';
 import { connectDB } from './config/db';
+import attractionsRoutes from './routes/attractions';
 
-// Server configuration
 dotenv.config();
+
 connectDB();
-const app = express();
-const router = Router();
+
+const app: Application = express();
+
 app.use(express.json());
-const PORT = process.env.PORT || 3000;
 
-// Routes
-router.get('/', async (req, res) => {
-  res.status(200).json({ message: 'Default route' });
-});
+app.use('/api', attractionsRoutes);
 
-router.get('/attractions', async (req, res) => {
-  res.status(200).json({ message: 'Teste' });
-});
-
-app.use('/api', router);
+const PORT: number = parseInt(process.env.PORT as string, 10) || 3000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
