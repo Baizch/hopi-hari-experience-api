@@ -11,6 +11,8 @@ router.get('/attractions', (req: Request, res: Response) => {
   attractionsController.getAttractions(req, res);
 });
 
-// TO DO: create route to update attraction status & opening hours
+router.patch('/attractions/:id', (req: Request, res: Response) => {
+  attractionsController.updateAttraction(req, res);
+});
 
 export default router;

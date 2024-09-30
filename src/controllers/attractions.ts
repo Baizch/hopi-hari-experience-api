@@ -80,3 +80,38 @@ export const getAttractions = async (
     return res.status(500).json({ message: 'Server error' });
   }
 };
+
+export const updateAttraction = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const id = { _id: req.params.id };
+    const { status, openingHours } = req.body;
+    const update = { status, openingHours };
+
+    const attraction: IAttraction = await Attraction.findById(id);
+
+    if (!attraction) {
+      res.status(404).json({ message: 'No attraction found' });
+      return;
+    }
+
+    const updatedAttraction: IAttraction = await Attraction.findOneAndUpdate(
+      id,
+      update,
+      { new: true }
+    );
+
+    if (!updatedAttraction) {
+      res.status(404).json({ message: 'Unable to update attraction' });
+      return;
+    }
+
+    res.status(200).json({
+      updatedAttraction,
+    });
+  } catch (error: unknown) {
+    return res.status(500).json({ message: 'Server error' });
+  }
+};
