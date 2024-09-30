@@ -2,6 +2,50 @@ import { Request, Response } from 'express';
 import Attraction from '../models/attraction';
 import { IAttraction } from '../types/index';
 
+export const createAttraction = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const {
+      category,
+      name,
+      description,
+      status,
+      openingHours,
+      minHeight,
+      maxHeight,
+      image,
+      altImage,
+      video,
+      observation,
+    } = req.body;
+
+    const attraction = new Attraction<IAttraction>({
+      category,
+      name,
+      description,
+      status,
+      openingHours,
+      minHeight,
+      maxHeight,
+      image,
+      altImage,
+      video,
+      observation,
+    });
+
+    attraction.save().then((savedAttraction: IAttraction) => {
+      res.status(201).json({
+        message: 'Attraction successfully created',
+        attraction: savedAttraction,
+      });
+    });
+  } catch (error: unknown) {
+    return res.status(500).json({ message: 'Server error' });
+  }
+};
+
 export const getAttractions = async (
   req: Request,
   res: Response

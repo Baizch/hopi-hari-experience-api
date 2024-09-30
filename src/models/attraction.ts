@@ -40,11 +40,9 @@ const attractionSchema = new Schema<IAttraction>({
   },
   video: {
     type: String,
-    required: true,
   },
   observation: {
     type: String,
-    required: true,
   },
 });
 
