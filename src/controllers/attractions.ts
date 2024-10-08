@@ -42,7 +42,7 @@ export const createAttraction = async (
       });
     });
   } catch (error: unknown) {
-    return res.status(500).json({ message: 'Server error' });
+    return res.status(500).json({ message: 'Server error', error });
   }
 };
 
@@ -77,7 +77,7 @@ export const getAttractions = async (
       },
     });
   } catch (error: unknown) {
-    return res.status(500).json({ message: 'Server error' });
+    return res.status(500).json({ message: 'Server error', error });
   }
 };
 
@@ -112,6 +112,6 @@ export const updateAttraction = async (
       updatedAttraction,
     });
   } catch (error: unknown) {
-    return res.status(500).json({ message: 'Server error' });
+    return res.status(500).json({ message: 'Server error', error });
   }
 };
