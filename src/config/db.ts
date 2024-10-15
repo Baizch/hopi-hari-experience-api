@@ -7,6 +7,7 @@ const mongoUri: string = process.env.MONGO_URI || '';
 
 export const connectDB = async (): Promise<void> => {
   try {
+    console.log('MongoDB URI:', process.env.MONGO_URI);
     await mongoose.connect(mongoUri);
     console.log('Connection established successfully');
   } catch (err: unknown) {
