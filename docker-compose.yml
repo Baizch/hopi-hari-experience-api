@@ -16,10 +16,6 @@ services:
     command: npm run dev
     networks:
       - app-network
-    environment:
-      - no_proxy=localhost,127.0.0.1,mongo
-      - http_proxy=
-      - https_proxy=
 
   mongo:
     image: mongo:latest
@@ -30,13 +26,11 @@ services:
     volumes:
       - mongo-data:/data/db
     environment:
-      - MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      - MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
-      - no_proxy=localhost,127.0.0.1,mongo
-      - http_proxy=
-      - https_proxy=
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     networks:
       - app-network
+    command: mongod --bind_ip 0.0.0.0
 
 volumes:
   mongo-data:
