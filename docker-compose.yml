@@ -19,7 +19,7 @@ services:
 
   mongo:
     image: mongo:latest
-    container_name: hopi-hari-experience-mongo
+    container_name: mongo
     restart: always
     ports:
       - '27017:27017'
@@ -30,11 +30,6 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     networks:
       - app-network
-    healthcheck:
-      test: ['CMD', 'mongo', '--eval', 'db.runCommand({ ping: 1 })']
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
 volumes:
   mongo-data:
