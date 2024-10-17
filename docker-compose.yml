@@ -30,7 +30,6 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     networks:
       - app-network
-    command: mongod --bind_ip 0.0.0.0
 
 volumes:
   mongo-data:
