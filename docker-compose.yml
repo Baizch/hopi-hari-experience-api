@@ -11,8 +11,7 @@ services:
     working_dir: /app
     env_file:
       - .env
-    depends_on:
-      - mongo
+    depends_on: mongo
     command: npm run dev
     networks:
       - app-network
