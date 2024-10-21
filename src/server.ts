@@ -1,4 +1,5 @@
 import express, { Application } from 'express';
+import cors from 'cors';
 import dotenv from 'dotenv';
 import { connectDB } from './config/db';
 import attractionsRoutes from './routes/attractions';
@@ -8,6 +9,12 @@ dotenv.config();
 connectDB();
 
 const app: Application = express();
+
+app.use(
+  cors({
+    origin: '*',
+  })
+);
 
 app.use(express.json());
 
