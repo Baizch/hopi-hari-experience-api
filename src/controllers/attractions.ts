@@ -87,8 +87,7 @@ export const updateAttraction = async (
 ): Promise<void> => {
   try {
     const id = { _id: req.params.id };
-    const { status, openingHours } = req.body;
-    const update = { status, openingHours };
+    const update = req.body;
 
     const attraction: IAttraction = await Attraction.findById(id);
 

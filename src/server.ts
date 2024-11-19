@@ -8,7 +8,7 @@ dotenv.config();
 
 connectDB();
 
-const app: Application = express();
+const app = express();
 
 app.use(
   cors({
@@ -20,7 +20,7 @@ app.use(express.json());
 
 app.use('/api', attractionsRoutes);
 
-const PORT: number = parseInt(process.env.PORT as string, 10) || 3000;
+const PORT = parseInt(process.env.PORT as string, 10) || 3000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
